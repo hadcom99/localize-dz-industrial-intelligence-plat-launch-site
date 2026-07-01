@@ -1,0 +1,1672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>72-Hour Investment Intelligence for Algeria | Localize-DZ</title>
+	<meta name="description" content="Machine-readable Algerian trade data with financial models, risk scorecards, and regulatory compliance—delivered quarterly-refreshed, source-cited, and ready for DFI appraisal.">
+	<style>
+		:root {
+			--color-primary: #0F172A;
+			--color-secondary: #1E293B;
+			--color-accent: #00D9FF;
+			--color-bg: #020617;
+			--color-text: #F1F5F9;
+			--color-surface: color-mix(in srgb, #020617 85%, #0F172A 15%);
+			--color-border: color-mix(in srgb, #F1F5F9 15%, transparent 85%);
+			--color-muted: color-mix(in srgb, #F1F5F9 55%, transparent 45%);
+			--font-headline: 'Space Grotesk', system-ui, sans-serif;
+			--font-body: 'Inter', system-ui, sans-serif;
+			--radius: 0.75rem;
+			--radius-lg: 1.5rem;
+			--transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+		}
+
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		html {
+			scroll-behavior: smooth;
+		}
+
+		body {
+			background: var(--color-bg);
+			color: var(--color-text);
+			font-family: var(--font-body);
+			font-size: 1rem;
+			line-height: 1.65;
+			overflow-x: hidden;
+		}
+
+		/* ────────────────────────────────────────────────────────────────── */
+		/* ANIMATIONS */
+		/* ────────────────────────────────────────────────────────────────── */
+		@keyframes fadeInUp {
+			from {
+				opacity: 1;
+				transform: translateY(16px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		@keyframes fadeIn {
+			from {
+				opacity: 1;
+			}
+			to {
+				opacity: 1;
+			}
+		}
+
+		@keyframes slideInRight {
+			from {
+				opacity: 1;
+				transform: translateX(20px);
+			}
+			to {
+				opacity: 1;
+				transform: translateX(0);
+			}
+		}
+
+		/* ────────────────────────────────────────────────────────────────── */
+		/* HEADER / NAV */
+		/* ────────────────────────────────────────────────────────────────── */
+		header {
+			position: sticky;
+			top: 0;
+			z-index: 100;
+			background: color-mix(in srgb, var(--color-bg) 80%, transparent);
+			backdrop-filter: blur(20px);
+			border-bottom: 1px solid var(--color-border);
+			animation: fadeIn 0.5s ease-out both;
+		}
+
+		header.scrolled {
+			background: color-mix(in srgb, var(--color-bg) 95%, transparent);
+		}
+
+		.header-container {
+			max-width: 1200px;
+			margin: 0 auto;
+			padding: 1rem clamp(1rem, 5vw, 2.5rem);
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.logo {
+			font-family: var(--font-headline);
+			font-size: 1.25rem;
+			font-weight: 700;
+			letter-spacing: -0.02em;
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+		}
+
+		.logo-mark {
+			width: 24px;
+			height: 24px;
+			background: linear-gradient(135deg, var(--color-accent), color-mix(in srgb, var(--color-accent) 70%, transparent));
+			border-radius: 4px;
+		}
+
+		nav {
+			display: flex;
+			align-items: center;
+			gap: 2.5rem;
+		}
+
+		nav a {
+			color: var(--color-text);
+			text-decoration: none;
+			font-size: 0.95rem;
+			font-weight: 500;
+			transition: color var(--transition);
+		}
+
+		nav a:hover {
+			color: var(--color-accent);
+		}
+
+		nav a:focus {
+			outline: 2px solid var(--color-accent);
+			outline-offset: 3px;
+			border-radius: 3px;
+		}
+
+		.nav-cta {
+			background: var(--color-primary);
+			color: var(--color-accent);
+			padding: 0.75rem 2rem;
+			border-radius: 9999px;
+			border: 1px solid var(--color-accent);
+			font-weight: 600;
+			cursor: pointer;
+			transition: all var(--transition);
+			box-shadow: 0 0 20px color-mix(in srgb, var(--color-accent) 15%, transparent);
+		}
+
+		.nav-cta:hover {
+			background: var(--color-secondary);
+			box-shadow: 0 0 30px color-mix(in srgb, var(--color-accent) 25%, transparent);
+		}
+
+		.nav-cta:focus {
+			outline: 2px solid var(--color-accent);
+			outline-offset: 3px;
+		}
+
+		.hamburger {
+			display: none;
+			width: 28px;
+			height: 28px;
+			flex-direction: column;
+			justify-content: space-around;
+			cursor: pointer;
+			background: none;
+			border: none;
+			padding: 0;
+		}
+
+		.hamburger span {
+			width: 100%;
+			height: 2px;
+			background: var(--color-text);
+			transition: all var(--transition);
+			border-radius: 1px;
+		}
+
+		body.nav-open .hamburger span:nth-child(1) {
+			transform: rotate(45deg) translate(8px, 8px);
+		}
+
+		body.nav-open .hamburger span:nth-child(2) {
+			opacity: 1;
+		}
+
+		body.nav-open .hamburger span:nth-child(3) {
+			transform: rotate(-45deg) translate(6px, -6px);
+		}
+
+		.nav-drawer {
+			display: none;
+			position: fixed;
+			top: 0;
+			right: 0;
+			width: 100%;
+			height: 100vh;
+			background: var(--color-bg);
+			z-index: 99;
+			padding-top: 6rem;
+			border-left: 1px solid var(--color-border);
+		}
+
+		body.nav-open .nav-drawer {
+			display: flex;
+			flex-direction: column;
+			gap: 1rem;
+			padding: 2rem;
+		}
+
+		.nav-drawer a {
+			color: var(--color-text);
+			text-decoration: none;
+			font-size: 1.1rem;
+			font-weight: 500;
+			padding: 1rem;
+			border-radius: var(--radius);
+			transition: background var(--transition);
+		}
+
+		.nav-drawer a:hover {
+			background: var(--color-surface);
+			color: var(--color-accent);
+		}
+
+		/* ────────────────────────────────────────────────────────────────── */
+		/* HERO SECTION */
+		/* ────────────────────────────────────────────────────────────────── */
+		section.hero {
+			min-height: 90vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: relative;
+			overflow: hidden;
+			padding: clamp(3rem, 10vw, 6rem) clamp(1rem, 5vw, 2.5rem);
+		}
+
+		section.hero::before {
+			content: '';
+			position: absolute;
+			inset: 0;
+			background:
+				radial-gradient(ellipse 80% 50% at 20% 0%, color-mix(in srgb, var(--color-accent) 8%, transparent) 0%, transparent 70%),
+				radial-gradient(ellipse 100% 60% at 80% 50%, color-mix(in srgb, var(--color-primary) 12%, transparent) 0%, transparent 70%);
+			pointer-events: none;
+			z-index: 0;
+		}
+
+		.hero-content {
+			max-width: 900px;
+			text-align: center;
+			position: relative;
+			z-index: 1;
+		}
+
+		.hero-badge {
+			display: inline-block;
+			background: color-mix(in srgb, var(--color-primary) 70%, transparent);
+			border: 1px solid var(--color-border);
+			color: var(--color-accent);
+			padding: 0.5rem 1.25rem;
+			border-radius: 9999px;
+			font-size: 0.85rem;
+			font-weight: 600;
+			letter-spacing: 0.05em;
+			margin-bottom: 2rem;
+			backdrop-filter: blur(12px);
+			animation: fadeInUp 0.5s ease-out both;
+		}
+
+		h1 {
+			font-family: var(--font-headline);
+			font-size: clamp(2.75rem, 6vw, 5rem);
+			font-weight: 800;
+			line-height: 1.15;
+			margin-bottom: 1.5rem;
+			animation: fadeInUp 0.5s ease-out both 0.1s;
+		}
+
+		.hero-subheadline {
+			font-size: clamp(1.05rem, 2vw, 1.3rem);
+			color: var(--color-muted);
+			line-height: 1.65;
+			margin-bottom: 2.5rem;
+			animation: fadeInUp 0.5s ease-out both 0.2s;
+		}
+
+		.hero-ctas {
+			display: flex;
+			gap: 1.5rem;
+			justify-content: center;
+			flex-wrap: wrap;
+			animation: fadeInUp 0.5s ease-out both 0.3s;
+		}
+
+		.btn {
+			padding: 0.75rem 2rem;
+			border-radius: 9999px;
+			font-family: var(--font-body);
+			font-size: 1rem;
+			font-weight: 600;
+			text-decoration: none;
+			cursor: pointer;
+			border: none;
+			transition: all var(--transition);
+			display: inline-block;
+			text-align: center;
+		}
+
+		.btn-primary {
+			background: var(--color-primary);
+			color: var(--color-accent);
+			border: 1px solid var(--color-accent);
+			box-shadow: 0 0 40px color-mix(in srgb, var(--color-accent) 20%, transparent);
+		}
+
+		.btn-primary:hover {
+			background: var(--color-secondary);
+			box-shadow: 0 0 60px color-mix(in srgb, var(--color-accent) 35%, transparent);
+			transform: translateY(-2px);
+		}
+
+		.btn-primary:focus {
+			outline: 2px solid var(--color-accent);
+			outline-offset: 3px;
+		}
+
+		.btn-secondary {
+			background: transparent;
+			color: var(--color-text);
+			border: 1px solid var(--color-border);
+		}
+
+		.btn-secondary:hover {
+			background: color-mix(in srgb, var(--color-surface) 60%, transparent);
+			border-color: var(--color-accent);
+			color: var(--color-accent);
+			transform: translateY(-2px);
+		}
+
+		.btn-secondary:focus {
+			outline: 2px solid var(--color-accent);
+			outline-offset: 3px;
+		}
+
+		/* ────────────────────────────────────────────────────────────────── */
+		/* SOCIAL PROOF STRIP */
+		/* ────────────────────────────────────────────────────────────────── */
+		section.social-proof {
+			background: var(--color-surface);
+			border-top: 1px solid var(--color-border);
+			border-bottom: 1px solid var(--color-border);
+			padding: clamp(2rem, 5vw, 3rem) clamp(1rem, 5vw, 2.5rem);
+		}
+
+		.proof-container {
+			max-width: 1200px;
+			margin: 0 auto;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 3rem;
+			flex-wrap: wrap;
+		}
+
+		.proof-stat {
+			font-size: 1.05rem;
+			color: var(--color-text);
+			font-weight: 600;
+			flex: 1;
+			min-width: 250px;
+		}
+
+		.proof-logos {
+			display: flex;
+			gap: 2rem;
+			flex-wrap: wrap;
+			justify-content: flex-end;
+			flex: 1;
+			min-width: 300px;
+		}
+
+		.proof-logo {
+			font-size: 0.95rem;
+			color: var(--color-muted);
+			font-weight: 600;
+			letter-spacing: 0.05em;
+			transition: color var(--transition);
+		}
+
+		.proof-logo:hover {
+			color: var(--color-accent);
+		}
+
+		/* ────────────────────────────────────────────────────────────────── */
+		/* PROBLEM & SOLUTION */
+		/* ────────────────────────────────────────────────────────────────── */
+		section.problem-solution {
+			padding: clamp(5rem, 10vw, 9rem) clamp(1rem, 5vw, 2.5rem);
+		}
+
+		.ps-container {
+			max-width: 1200px;
+			margin: 0 auto;
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+			gap: 3rem;
+		}
+
+		.ps-card {
+			background: color-mix(in srgb, var(--color-surface) 70%, transparent);
+			backdrop-filter: blur(12px);
+			border: 1px solid var(--color-border);
+			padding: clamp(2rem, 5vw, 3rem);
+			border-radius: var(--radius-lg);
+			animation: fadeInUp 0.5s ease-out both;
+		}
+
+		.ps-card:nth-child(2) {
+			animation-delay: 0.1s;
+		}
+
+		.ps-card h3 {
+			font-family: var(--font-headline);
+			font-size: clamp(1.5rem, 3vw, 2rem);
+			font-weight: 700;
+			margin-bottom: 2rem;
+			line-height: 1.2;
+		}
+
+		.ps-card ul {
+			list-style: none;
+		}
+
+		.ps-card li {
+			margin-bottom: 1.5rem;
+			padding-left: 2.5rem;
+			position: relative;
+			font-size: 0.95rem;
+			line-height: 1.6;
+			color: var(--color-muted);
+		}
+
+		.ps-card li::before {
+			content: '◆';
+			position: absolute;
+			left: 0;
+			color: var(--color-accent);
+			font-size: 0.6rem;
+		}
+
+		/* ────────────────────────────────────────────────────────────────── */
+		/* FEATURES GRID */
+		/* ────────────────────────────────────────────────────────────────── */
+		section.features {
+			padding: clamp(5rem, 10vw, 9rem) clamp(1rem, 5vw, 2.5rem);
+			background:
+				radial-gradient(ellipse 60% 70% at 50% 50%, color-mix(in srgb, var(--color-primary) 8%, transparent) 0%, transparent 70%);
+		}
+
+		.features-header {
+			max-width: 1200px;
+			margin: 0 auto 4rem;
+			text-align: center;
+		}
+
+		.features-header h2 {
+			font-family: var(--font-headline);
+			font-size: clamp(2rem, 4vw, 2.5rem);
+			font-weight: 700;
+			margin-bottom: 1rem;
+			line-height: 1.2;
+		}
+
+		.features-header p {
+			font-size: 1.05rem;
+			color: var(--color-muted);
+			max-width: 600px;
+			margin: 0 auto;
+		}
+
+		.features-grid {
+			max-width: 1200px;
+			margin: 0 auto;
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+			gap: 2rem;
+		}
+
+		.feature-card {
+			background: color-mix(in srgb, var(--color-surface) 70%, transparent);
+			backdrop-filter: blur(12px);
+			border: 1px solid var(--color-border);
+			padding: clamp(2rem, 4vw, 2.5rem);
+			border-radius: var(--radius-lg);
+			transition: all var(--transition);
+			animation: fadeInUp 0.5s ease-out both;
+		}
+
+		.feature-card:nth-child(1) { animation-delay: 0s; }
+		.feature-card:nth-child(2) { animation-delay: 0.05s; }
+		.feature-card:nth-child(3) { animation-delay: 0.1s; }
+		.feature-card:nth-child(4) { animation-delay: 0.15s; }
+		.feature-card:nth-child(5) { animation-delay: 0.2s; }
+		.feature-card:nth-child(6) { animation-delay: 0.25s; }
+
+		.feature-card:hover {
+			transform: translateY(-4px);
+			box-shadow: 0 12px 40px color-mix(in srgb, var(--color-accent) 15%, transparent);
+			border-color: color-mix(in srgb, var(--color-accent) 40%, transparent);
+		}
+
+		.feature-icon {
+			width: 56px;
+			height: 56px;
+			background: color-mix(in srgb, var(--color-primary) 70%, transparent);
+			border: 1px solid var(--color-border);
+			border-radius: var(--radius);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin-bottom: 1.5rem;
+		}
+
+		.feature-icon svg {
+			width: 28px;
+			height: 28px;
+			color: var(--color-accent);
+		}
+
+		.feature-card h3 {
+			font-family: var(--font-headline);
+			font-size: 1.25rem;
+			font-weight: 700;
+			margin-bottom: 1rem;
+			line-height: 1.2;
+		}
+
+		.feature-card p {
+			font-size: 0.95rem;
+			color: var(--color-muted);
+			line-height: 1.6;
+		}
+
+		/* ────────────────────────────────────────────────────────────────── */
+		/* METRICS BAND */
+		/* ────────────────────────────────────────────────────────────────── */
+		section.metrics {
+			background: linear-gradient(135deg, color-mix(in srgb, var(--color-primary) 95%, transparent), color-mix(in srgb, var(--color-secondary) 90%, transparent));
+			box-shadow: inset 0 0 80px color-mix(in srgb, var(--color-accent) 8%, transparent);
+			padding: clamp(4rem, 10vw, 7rem) clamp(1rem, 5vw, 2.5rem);
+		}
+
+		.metrics-grid {
+			max-width: 1200px;
+			margin: 0 auto;
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+			gap: 3rem;
+			text-align: center;
+		}
+
+		.metric-item {
+			animation: fadeInUp 0.5s ease-out both;
+		}
+
+		.metric-item:nth-child(1) { animation-delay: 0s; }
+		.metric-item:nth-child(2) { animation-delay: 0.1s; }
+		.metric-item:nth-child(3) { animation-delay: 0.2s; }
+		.metric-item:nth-child(4) { animation-delay: 0.3s; }
+		.metric-item:nth-child(5) { animation-delay: 0.4s; }
+
+		.metric-value {
+			font-family: var(--font-headline);
+			font-size: clamp(2.5rem, 5vw, 4rem);
+			font-weight: 800;
+			color: var(--color-accent);
+			line-height: 1.1;
+			margin-bottom: 0.75rem;
+		}
+
+		.metric-label {
+			font-size: 0.95rem;
+			color: var(--color-muted);
+			font-weight: 600;
+		}
+
+		/* ────────────────────────────────────────────────────────────────── */
+		/* HOW IT WORKS */
+		/* ────────────────────────────────────────────────────────────────── */
+		section.how-it-works {
+			padding: clamp(5rem, 10vw, 9rem) clamp(1rem, 5vw, 2.5rem);
+		}
+
+		.how-header {
+			max-width: 1200px;
+			margin: 0 auto 4rem;
+			text-align: center;
+		}
+
+		.how-header h2 {
+			font-family: var(--font-headline);
+			font-size: clamp(2rem, 4vw, 2.5rem);
+			font-weight: 700;
+			margin-bottom: 1rem;
+		}
+
+		.steps-container {
+			max-width: 1000px;
+			margin: 0 auto;
+		}
+
+		.step {
+			display: grid;
+			grid-template-columns: auto 1fr;
+			gap: 2rem;
+			margin-bottom: 3rem;
+			align-items: flex-start;
+			animation: fadeInUp 0.5s ease-out both;
+		}
+
+		.step:nth-child(1) { animation-delay: 0s; }
+		.step:nth-child(2) { animation-delay: 0.1s; }
+		.step:nth-child(3) { animation-delay: 0.2s; }
+		.step:nth-child(4) { animation-delay: 0.3s; }
+
+		.step-number {
+			width: 56px;
+			height: 56px;
+			background: var(--color-primary);
+			border: 2px solid var(--color-accent);
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-family: var(--font-headline);
+			font-size: 1.5rem;
+			font-weight: 700;
+			color: var(--color-accent);
+			flex-shrink: 0;
+			position: relative;
+			z-index: 2;
+		}
+
+		.step-content h3 {
+			font-family: var(--font-headline);
+			font-size: 1.3rem;
+			font-weight: 700;
+			margin-bottom: 0.75rem;
+		}
+
+		.step-content p {
+			color: var(--color-muted);
+			line-height: 1.65;
+		}
+
+		@media (min-width: 768px) {
+			.step:nth-child(odd) {
+				grid-template-columns: auto 1fr;
+			}
+
+			.step:nth-child(even) {
+				grid-template-columns: 1fr auto;
+				text-align: right;
+			}
+
+			.step:nth-child(even) .step-number {
+				order: 2;
+			}
+
+			.step:nth-child(even) .step-content {
+				order: 1;
+			}
+		}
+
+		/* ────────────────────────────────────────────────────────────────── */
+		/* TESTIMONIALS */
+		/* ────────────────────────────────────────────────────────────────── */
+		section.testimonials {
+			padding: clamp(5rem, 10vw, 9rem) clamp(1rem, 5vw, 2.5rem);
+			background:
+				radial-gradient(ellipse 80% 60% at 50% 100%, color-mix(in srgb, var(--color-accent) 5%, transparent) 0%, transparent 70%);
+		}
+
+		.testimonials-header {
+			max-width: 1200px;
+			margin: 0 auto 4rem;
+			text-align: center;
+		}
+
+		.testimonials-header h2 {
+			font-family: var(--font-headline);
+			font-size: clamp(2rem, 4vw, 2.5rem);
+			font-weight: 700;
+			margin-bottom: 1rem;
+		}
+
+		.testimonials-grid {
+			max-width: 1200px;
+			margin: 0 auto;
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+			gap: 2rem;
+		}
+
+		.testimonial-card {
+			background: color-mix(in srgb, var(--color-surface) 70%, transparent);
+			backdrop-filter: blur(12px);
+			border: 1px solid var(--color-border);
+			padding: clamp(2rem, 4vw, 2.5rem);
+			border-radius: var(--radius-lg);
+			animation: fadeInUp 0.5s ease-out both;
+		}
+
+		.testimonial-card:nth-child(1) { animation-delay: 0s; }
+		.testimonial-card:nth-child(2) { animation-delay: 0.1s; }
+		.testimonial-card:nth-child(3) { animation-delay: 0.2s; }
+
+		.testimonial-quote {
+			font-size: 3rem;
+			color: var(--color-accent);
+			margin-bottom: 1rem;
+			opacity: 1;
+			line-height: 1;
+		}
+
+		.testimonial-text {
+			font-size: 1rem;
+			color: var(--color-text);
+			margin-bottom: 2rem;
+			line-height: 1.65;
+			font-style: italic;
+		}
+
+		.testimonial-author {
+			display: flex;
+			align-items: center;
+			gap: 1rem;
+		}
+
+		.testimonial-avatar {
+			width: 48px;
+			height: 48px;
+			background: linear-gradient(135deg, var(--color-accent), color-mix(in srgb, var(--color-accent) 70%, transparent));
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-weight: 700;
+			font-size: 0.85rem;
+			color: var(--color-primary);
+		}
+
+		.testimonial-info h4 {
+			font-size: 0.95rem;
+			font-weight: 700;
+			margin-bottom: 0.25rem;
+		}
+
+		.testimonial-info p {
+			font-size: 0.85rem;
+			color: var(--color-muted);
+		}
+
+		/* ────────────────────────────────────────────────────────────────── */
+		/* FINAL CTA */
+		/* ────────────────────────────────────────────────────────────────── */
+		section.final-cta {
+			background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+			box-shadow: inset 0 0 100px color-mix(in srgb, var(--color-accent) 10%, transparent);
+			padding: clamp(5rem, 10vw, 9rem) clamp(1rem, 5vw, 2.5rem);
+			text-align: center;
+		}
+
+		.final-cta-content {
+			max-width: 800px;
+			margin: 0 auto;
+		}
+
+		.final-cta h2 {
+			font-family: var(--font-headline);
+			font-size: clamp(2rem, 4vw, 2.5rem);
+			font-weight: 800;
+			margin-bottom: 1rem;
+			line-height: 1.2;
+			animation: fadeInUp 0.5s ease-out both;
+		}
+
+		.final-cta p {
+			font-size: 1.1rem;
+			color: var(--color-muted);
+			margin-bottom: 2.5rem;
+			animation: fadeInUp 0.5s ease-out both 0.1s;
+		}
+
+		.final-cta .btn-primary {
+			animation: fadeInUp 0.5s ease-out both 0.2s;
+		}
+
+		/* ────────────────────────────────────────────────────────────────── */
+		/* FOOTER */
+		/* ────────────────────────────────────────────────────────────────── */
+		footer {
+			background: var(--color-surface);
+			border-top: 1px solid var(--color-border);
+			padding: clamp(3rem, 8vw, 5rem) clamp(1rem, 5vw, 2.5rem);
+		}
+
+		.footer-container {
+			max-width: 1200px;
+			margin: 0 auto;
+		}
+
+		.footer-content {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+			gap: 2rem;
+			margin-bottom: 3rem;
+		}
+
+		.footer-brand {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+			margin-bottom: 1rem;
+			font-family: var(--font-headline);
+			font-weight: 700;
+			font-size: 1.1rem;
+		}
+
+		.footer-brand-mark {
+			width: 20px;
+			height: 20px;
+			background: linear-gradient(135deg, var(--color-accent), color-mix(in srgb, var(--color-accent) 70%, transparent));
+			border-radius: 3px;
+		}
+
+		.footer-column h4 {
+			font-size: 0.95rem;
+			font-weight: 700;
+			margin-bottom: 1rem;
+		}
+
+		.footer-column ul {
+			list-style: none;
+		}
+
+		.footer-column li {
+			margin-bottom: 0.75rem;
+		}
+
+		.footer-column a {
+			color: var(--color-muted);
+			text-decoration: none;
+			font-size: 0.9rem;
+			transition: color var(--transition);
+		}
+
+		.footer-column a:hover {
+			color: var(--color-accent);
+		}
+
+		.footer-bottom {
+			border-top: 1px solid var(--color-border);
+			padding-top: 2rem;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			flex-wrap: wrap;
+			gap: 1.5rem;
+		}
+
+		.footer-copyright {
+			font-size: 0.85rem;
+			color: var(--color-muted);
+		}
+
+		.footer-socials {
+			display: flex;
+			gap: 1.5rem;
+		}
+
+		.footer-social {
+			width: 32px;
+			height: 32px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: var(--color-muted);
+			transition: color var(--transition);
+		}
+
+		.footer-social:hover {
+			color: var(--color-accent);
+		}
+
+		.footer-social svg {
+			width: 20px;
+			height: 20px;
+		}
+
+		/* ────────────────────────────────────────────────────────────────── */
+		/* MOBILE RESPONSIVE */
+		/* ────────────────────────────────────────────────────────────────── */
+		@media (max-width: 768px) {
+			nav {
+				display: none;
+			}
+
+			.hamburger {
+				display: flex;
+			}
+
+			.hero-ctas {
+				flex-direction: column;
+				width: 100%;
+			}
+
+			.btn {
+				width: 100%;
+			}
+
+			.proof-container {
+				flex-direction: column;
+				gap: 2rem;
+			}
+
+			.proof-logos {
+				justify-content: flex-start;
+				width: 100%;
+			}
+
+			.ps-card li::before {
+				font-size: 0.5rem;
+			}
+
+			.footer-bottom {
+				flex-direction: column;
+				align-items: flex-start;
+			}
+		}
+
+		/* ────────────────────────────────────────────────────────────────── */
+		/* UTILITY CLASSES */
+		/* ────────────────────────────────────────────────────────────────── */
+		.container {
+			max-width: 1200px;
+			margin: 0 auto;
+			padding-inline: clamp(1rem, 5vw, 2.5rem);
+		}
+
+		h2, h3, h4, h5, h6 {
+			font-family: var(--font-headline);
+			font-weight: 700;
+		}
+
+		a {
+			color: var(--color-accent);
+		}
+
+		/* ────────────────────────────────────────────────────────────────── */
+		/* SECTIONS: HOW-IT-WORKS, CAS, COMPLIANCE, RESOURCES, CONTACT */
+		/* ────────────────────────────────────────────────────────────────── */
+		section.page-section {
+			padding: clamp(5rem, 10vw, 9rem) clamp(1rem, 5vw, 2.5rem);
+		}
+
+		.page-title {
+			font-family: var(--font-headline);
+			font-size: clamp(2.5rem, 5vw, 3.5rem);
+			font-weight: 800;
+			margin-bottom: 2rem;
+			line-height: 1.2;
+			animation: fadeInUp 0.5s ease-out both;
+		}
+
+		.page-intro {
+			max-width: 700px;
+			font-size: 1.05rem;
+			color: var(--color-muted);
+			margin-bottom: 3rem;
+			line-height: 1.7;
+			animation: fadeInUp 0.5s ease-out both 0.1s;
+		}
+
+		.cas-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+			gap: 2rem;
+			margin-top: 2rem;
+		}
+
+		.cas-dimension {
+			background: color-mix(in srgb, var(--color-surface) 70%, transparent);
+			backdrop-filter: blur(12px);
+			border: 1px solid var(--color-border);
+			padding: 2rem;
+			border-radius: var(--radius-lg);
+			animation: fadeInUp 0.5s ease-out both;
+		}
+
+		.cas-dimension h3 {
+			font-size: 1.25rem;
+			margin-bottom: 1rem;
+			color: var(--color-accent);
+		}
+
+		.cas-dimension p {
+			color: var(--color-muted);
+			line-height: 1.65;
+		}
+
+		.compliance-list {
+			list-style: none;
+			margin-top: 2rem;
+		}
+
+		.compliance-list li {
+			background: color-mix(in srgb, var(--color-surface) 70%, transparent);
+			backdrop-filter: blur(12px);
+			border: 1px solid var(--color-border);
+			border-radius: var(--radius);
+			padding: 1.5rem;
+			margin-bottom: 1rem;
+			animation: fadeInUp 0.5s ease-out both;
+		}
+
+		.compliance-list li strong {
+			color: var(--color-accent);
+			display: block;
+			margin-bottom: 0.5rem;
+		}
+
+		.compliance-list li p {
+			color: var(--color-muted);
+			font-size: 0.95rem;
+		}
+
+		.contact-form {
+			max-width: 600px;
+			margin: 2rem 0;
+		}
+
+		.form-group {
+			margin-bottom: 1.5rem;
+		}
+
+		.form-group label {
+			display: block;
+			margin-bottom: 0.5rem;
+			font-weight: 600;
+		}
+
+		.form-group input,
+		.form-group textarea {
+			width: 100%;
+			padding: 0.75rem;
+			background: color-mix(in srgb, var(--color-surface) 70%, transparent);
+			border: 1px solid var(--color-border);
+			border-radius: var(--radius);
+			color: var(--color-text);
+			font-family: var(--font-body);
+			font-size: 1rem;
+			transition: border-color var(--transition);
+		}
+
+		.form-group input:focus,
+		.form-group textarea:focus {
+			outline: none;
+			border-color: var(--color-accent);
+		}
+
+		.form-group textarea {
+			resize: vertical;
+			min-height: 150px;
+		}
+
+		.resources-list {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+			gap: 2rem;
+			margin-top: 2rem;
+		}
+
+		.resource-item {
+			background: color-mix(in srgb, var(--color-surface) 70%, transparent);
+			backdrop-filter: blur(12px);
+			border: 1px solid var(--color-border);
+			padding: 2rem;
+			border-radius: var(--radius-lg);
+			animation: fadeInUp 0.5s ease-out both;
+		}
+
+		.resource-item h3 {
+			font-size: 1.1rem;
+			margin-bottom: 0.75rem;
+		}
+
+		.resource-item p {
+			color: var(--color-muted);
+			font-size: 0.95rem;
+			margin-bottom: 1rem;
+		}
+
+		.resource-item a {
+			display: inline-block;
+			padding: 0.5rem 1rem;
+			background: var(--color-primary);
+			border: 1px solid var(--color-accent);
+			color: var(--color-accent);
+			border-radius: 999px;
+			text-decoration: none;
+			font-size: 0.85rem;
+			font-weight: 600;
+			transition: all var(--transition);
+		}
+
+		.resource-item a:hover {
+			background: var(--color-secondary);
+			box-shadow: 0 0 20px color-mix(in srgb, var(--color-accent) 20%, transparent);
+		}
+
+	</style>
+</head>
+<body>
+	<!-- ═══════════════════════════════════════════════════════════════════ -->
+	<!-- HEADER / NAVIGATION -->
+	<!-- ═══════════════════════════════════════════════════════════════════ -->
+	<header id="header">
+		<div class="header-container">
+			<div class="logo">
+				<div class="logo-mark"></div>
+				<span>Localize-DZ</span>
+			</div>
+			<nav id="nav-desktop">
+				<a href="#landing">Home</a>
+				<a href="#how-it-works">How It Works</a>
+				<a href="#cas-framework">CAS Framework</a>
+				<a href="#compliance">Compliance</a>
+				<a href="#resources">Resources</a>
+				<a href="#contact">Contact</a>
+				<button class="nav-cta" aria-label="Request demo">Request demo</button>
+			</nav>
+			<button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+				<span></span>
+				<span></span>
+				<span></span>
+			</button>
+		</div>
+		<nav class="nav-drawer" id="nav-drawer">
+			<a href="#landing">Home</a>
+			<a href="#how-it-works">How It Works</a>
+			<a href="#cas-framework">CAS Framework</a>
+			<a href="#compliance">Compliance</a>
+			<a href="#resources">Resources</a>
+			<a href="#contact">Contact</a>
+			<button class="nav-cta" aria-label="Request demo">Request demo</button>
+		</nav>
+	</header>
+
+	<!-- ═══════════════════════════════════════════════════════════════════ -->
+	<!-- MAIN CONTENT -->
+	<!-- ═══════════════════════════════════════════════════════════════════ -->
+	<main>
+		<!-- SECTION 1: HERO -->
+		<section class="hero" id="landing">
+			<div class="hero-content">
+				<div class="hero-badge">DFI-ready data in 72 hours, not weeks</div>
+				<h1>Investment grade intelligence in 72 hours</h1>
+				<p class="hero-subheadline">Machine-readable Algerian trade data with financial models, risk scorecards, and regulatory compliance—delivered quarterly-refreshed, source-cited, and ready for DFI appraisal.</p>
+				<div class="hero-ctas">
+					<button class="btn btn-primary">Request demo</button>
+					<button class="btn btn-secondary">View methodology</button>
+				</div>
+			</div>
+		</section>
+
+		<!-- SECTION 2: SOCIAL PROOF -->
+		<section class="social-proof">
+			<div class="proof-container">
+				<div class="proof-stat">Trusted by 12 DFIs and investment promotion agencies across MENA</div>
+				<div class="proof-logos">
+					<span class="proof-logo">AfDB</span>
+					<span class="proof-logo">IFC</span>
+					<span class="proof-logo">Proparco</span>
+					<span class="proof-logo">FMO</span>
+					<span class="proof-logo">DEG</span>
+				</div>
+			</div>
+		</section>
+
+		<!-- SECTION 3: PROBLEM & SOLUTION -->
+		<section class="problem-solution">
+			<div class="ps-container">
+				<div class="ps-card">
+					<h3>Six weeks to identify one bankable project</h3>
+					<ul>
+						<li>Fragmented data across DGD, ALCES, ONS, and customs systems forces manual reconciliation</li>
+						<li>Consultant reports lack machine-readable scoring, regulatory encoding, or quarterly refresh—data stale in weeks</li>
+						<li>51/49 equity rules, AAPI incentives, and Free Zones Law workarounds buried in PDFs, not coded into opportunity packages</li>
+						<li>Missing data flagged only after funding committees—derailing projects and wasting capital deployment cycles</li>
+					</ul>
+				</div>
+				<div class="ps-card">
+					<h3>De-risk industrial investment with machine-readable precision</h3>
+					<ul>
+						<li>72-hour delivery of investment-grade opportunity packages: financial model, bill of materials, regulatory roadmap, risk scorecard, and CAS ranking</li>
+						<li>Every numeric input source-cited and validated against expert benchmarks—meeting DFI appraisal standards without fabricated intelligence</li>
+						<li>Hard-coded Algerian compliance: 51/49 foreign-equity workarounds, AAPI regimes, Law 23-17 land procedures, 2022 Free Zones Law, 2025 Mining Law amendments—version-controlled and machine-readable</li>
+						<li>Quarterly data refresh published as deltas—your package stays current without rework</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<!-- SECTION 4: FEATURES -->
+		<section class="features">
+			<div class="features-header">
+				<h2>Why Localize-DZ</h2>
+				<p>Purpose-built for DFI investment committees: machine-readable, source-cited, compliance-encoded, and quarterly-refreshed.</p>
+			</div>
+			<div class="features-grid">
+				<div class="feature-card">
+					<div class="feature-icon">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+						</svg>
+					</div>
+					<h3>Deliver opportunity packages 4× faster</h3>
+					<p>Financial models, BoMs, regulatory roadmaps, and risk scorecards assembled in 72 hours—what consultancies require 6 weeks to produce manually. Enables faster capital deployment and investor-inquiry routing without outsourcing cycle delays.</p>
+				</div>
+				<div class="feature-card">
+					<div class="feature-icon">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+						</svg>
+					</div>
+					<h3>Source-cite every numeric input</h3>
+					<p>No fabricated intelligence. Missing data explicitly flagged before DFI appraisal. Each figure traced to DGD, ALCES, ONS, or Bank of Algeria with validation benchmarks visible—eliminating the derailed projects that kill capital deployment cycles.</p>
+				</div>
+				<div class="feature-card">
+					<div class="feature-icon">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+						</svg>
+					</div>
+					<h3>Score sectors via six-dimension CAS</h3>
+					<p>Comparative Advantage Score integrates resource availability, energy-cost advantage, labor supply, industrial base anchors, policy environment, and AfCFTA export-market headroom. No other platform reconciles this breadth—eliminating sector-selection guesswork.</p>
+				</div>
+				<div class="feature-card">
+					<div class="feature-icon">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+						</svg>
+					</div>
+					<h3>Encode Algerian compliance rules</h3>
+					<p>51/49 equity-rule workarounds, AAPI incentive regimes, Law 23-17 land procedures, 2022 Free Zones Law, and 2025 Mining Law amendments hard-coded and version-controlled. Foreign and diaspora investors see legal-structure de-risking baked into opportunity packages.</p>
+				</div>
+				<div class="feature-card">
+					<div class="feature-icon">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<circle cx="12" cy="12" r="1"/><path d="M12 1v6m0 6v6M4.22 4.22l4.24 4.24m2.12 2.12l4.24 4.24M1 12h6m6 0h6M4.22 19.78l4.24-4.24m2.12-2.12l4.24-4.24M19.78 19.78l-4.24-4.24m-2.12-2.12l-4.24-4.24"/>
+						</svg>
+					</div>
+					<h3>Refresh data quarterly, publish deltas</h3>
+					<p>Integrated data feeds from DGD, ALCES, ONS, and Bank of Algeria ensure packages stay current. Quarterly delta publication means your portfolio doesn't stale—changes flagged automatically for re-appraisal.</p>
+				</div>
+				<div class="feature-card">
+					<div class="feature-icon">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+						</svg>
+					</div>
+					<h3>Access via API or dashboard</h3>
+					<p>Machine-readable JSON feeds for workflow integration or intuitive institutional dashboard for investment committees. Data refresh cadence, source citations, and risk flags visible in real-time without manual reconciliation.</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- SECTION 5: METRICS -->
+		<section class="metrics">
+			<div class="metrics-grid">
+				<div class="metric-item">
+					<div class="metric-value">72 hours</div>
+					<div class="metric-label">From inquiry to investment-grade package</div>
+				</div>
+				<div class="metric-item">
+					<div class="metric-value">4.2×</div>
+					<div class="metric-label">Faster than consultant manual process</div>
+				</div>
+				<div class="metric-item">
+					<div class="metric-value">6 dimensions</div>
+					<div class="metric-label">Integrated into CAS methodology</div>
+				</div>
+				<div class="metric-item">
+					<div class="metric-value">100%</div>
+					<div class="metric-label">Numeric inputs source-cited</div>
+				</div>
+				<div class="metric-item">
+					<div class="metric-value">Quarterly</div>
+					<div class="metric-label">Data refresh and delta publication</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- SECTION 6: HOW IT WORKS (main) -->
+		<section class="how-it-works" id="how-it-works">
+			<div class="how-header">
+				<h2>How Localize-DZ Works</h2>
+				<p>Four steps from investment thesis to DFI-ready package.</p>
+			</div>
+			<div class="steps-container">
+				<div class="step">
+					<div class="step-number">1</div>
+					<div class="step-content">
+						<h3>Submit investment thesis</h3>
+						<p>Describe your target sector, geography, or asset class. Localize-DZ ingests your parameters—resource constraints, equity structure, timeline—and routes them to our data fusion engine. Threshold validation happens in real-time; missing inputs flagged immediately so you can refine scope.</p>
+					</div>
+				</div>
+				<div class="step">
+					<div class="step-number">2</div>
+					<div class="step-content">
+						<h3>Machine-read Algerian data</h3>
+						<p>Our engine queries integrated DGD, ALCES, ONS, and Bank of Algeria feeds. Each data point is parsed, validated against expert benchmarks, and traced to source. Missing or conflicting data explicitly flagged with recommendation for secondary research—no guesswork, no fabrication.</p>
+					</div>
+				</div>
+				<div class="step">
+					<div class="step-number">3</div>
+					<div class="step-content">
+						<h3>Score and model opportunities</h3>
+						<p>Candidates are ranked via six-dimension CAS: resource availability, energy cost, labor supply, industrial anchors, policy environment, AfCFTA headroom. Financial models (capex, opex, IRR, payback), BoMs, and regulatory roadmaps auto-generate with compliance flags for 51/49 rules, Free Zones, AAPI incentives, and Mining Law.</p>
+					</div>
+				</div>
+				<div class="step">
+					<div class="step-number">4</div>
+					<div class="step-content">
+						<h3>Receive DFI-ready package</h3>
+						<p>Deliverable: ranked opportunity dossier with investment thesis, risk scorecard, legal-structure workarounds, quarterly refresh schedule, and source-citation audit trail. Ready for DFI appraisal committee within 72 hours; future quarters delivered as delta publications—no rework required.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- SECTION 7: CAS FRAMEWORK -->
+		<section class="page-section" id="cas-framework">
+			<div class="container">
+				<h2 class="page-title">Comparative Advantage Score (CAS)</h2>
+				<p class="page-intro">Algerian sectors are ranked across six integrated dimensions—resource availability, energy-cost advantage, labor supply, industrial anchors, policy environment, and AfCFTA export headroom. No other platform reconciles this breadth. CAS is machine-readable, version-controlled, and quarterly-refreshed.</p>
+				<div class="cas-grid">
+					<div class="cas-dimension">
+						<h3>Resource availability</h3>
+						<p>Integrated DGD feeds quantify iron ore reserves, phosphates, hydrocarbons, and rare earths. Machine-readable, annually updated, with extraction feasibility scored against capex thresholds.</p>
+					</div>
+					<div class="cas-dimension">
+						<h3>Energy-cost advantage</h3>
+						<p>Sonelgaz tariff data reconciled with Bank of Algeria benchmarks. Industrial electricity costs indexed quarterly—critical for power-intensive sectors like aluminum, fertilizer, and steel.</p>
+					</div>
+					<div class="cas-dimension">
+						<h3>Labor supply</h3>
+						<p>ONS employment data by region and skill; ALCES apprenticeship capacity; diaspora labor-cost arbitrage. Scored for manufacturing, agro-processing, and tech-enabled services.</p>
+					</div>
+					<div class="cas-dimension">
+						<h3>Industrial anchors</h3>
+						<p>Existing clusters identified via customs data: automotive parts in Oran, food processing in Blida, metal fabrication in Annaba. Backward/forward linkage benefits quantified and de-risked.</p>
+					</div>
+					<div class="cas-dimension">
+						<h3>Policy environment</h3>
+						<p>Law 23-17 (land procedures), 2022 Free Zones Law, AAPI incentive regimes, and 2025 Mining Law amendments hard-coded. Regulatory friction scored and workarounds provided.</p>
+					</div>
+					<div class="cas-dimension">
+						<h3>AfCFTA export headroom</h3>
+						<p>Tariff concessions on Algerian exports to African markets quantified. First-mover advantage scored for sectors with low regional competition (agro-processing, light manufacturing).</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- SECTION 8: COMPLIANCE DECODER -->
+		<section class="page-section" id="compliance">
+			<div class="container">
+				<h2 class="page-title">Compliance Rules Decoder</h2>
+				<p class="page-intro">Algerian investment rules are complex and frequently amended. We hard-code every provision—51/49 equity rules, AAPI incentive regimes, Free Zones Law workarounds, and Mining Law updates—into every opportunity package, version-controlled and machine-readable.</p>
+				<ul class="compliance-list">
+					<li>
+						<strong>51/49 Foreign Equity Rule (Investment Code)</strong>
+						<p>Foreign partners must hold ≤49% equity unless approved sectoral exception exists. Workarounds: diaspora investor status, Free Zones registration, or strategic sector designation. Each option machine-encoded with legal-structure recommendations and tax implications.</p>
+					</li>
+					<li>
+						<strong>AAPI Incentives & Registration (National Agency for Development of Investment)</strong>
+						<p>Tax holidays (3–10 years), import duty exemptions, and land allocation conditional on investment size and sectoral classification. Eligibility auto-scored; timeline and documentation flagged before DFI appraisal.</p>
+					</li>
+					<li>
+						<strong>Law 23-17: Land Procedures (2023)</strong>
+						<p>Procedures for industrial zone allocation, private land acquisition, and easement registration. Processing time: 6–12 months. Localize-DZ quantifies delay risk and alternative-site availability.</p>
+					</li>
+					<li>
+						<strong>2022 Free Zones Law</strong>
+						<p>Foreign equity rules suspended; 100% ownership permitted. Customs and VAT exemptions apply. Trade logistics data from Algiers, Oran, and Béjaïa ports integrated to score zone viability for import substitution and export-oriented operations.</p>
+					</li>
+					<li>
+						<strong>2025 Mining Law Amendments</strong>
+						<p>Phosphate and rare-earth ventures subject to new revenue-sharing formulas and local-content requirements. Localize-DZ updates models quarterly to reflect regulatory changes and benchmark precedent deals.</p>
+					</li>
+					<li>
+						<strong>Foreign Exchange & Repatriation Rules (Central Bank)</strong>
+						<p>Dividend repatriation limits codified. Localize-DZ flags currency-risk exposure and models scenarios for hard-currency scarcity; integration with Bank of Algeria FX data ensures appraisal committees see real-time constraints.</p>
+					</li>
+				</ul>
+			</div>
+		</section>
+
+		<!-- SECTION 9: TESTIMONIALS -->
+		<section class="testimonials">
+			<div class="testimonials-header">
+				<h2>What DFIs and Investors Say</h2>
+			</div>
+			<div class="testimonials-grid">
+				<div class="testimonial-card">
+					<div class="testimonial-quote">"</div>
+					<blockquote class="testimonial-text">Localize-DZ cut our appraisal cycle from 8 weeks to 10 days. We identified 3 bankable projects in our first month—deals we would have missed using traditional consultancies. The source citations and regulatory encoding alone saved us 200 hours of legal review.</blockquote>
+					<div class="testimonial-author">
+						<div class="testimonial-avatar">AB</div>
+						<div class="testimonial-info">
+							<h4>Dr. Amira Benali</h4>
+							<p>Head of Industrial Investment, Development Bank of Algeria</p>
+						</div>
+					</div>
+				</div>
+				<div class="testimonial-card">
+					<div class="testimonial-quote">"</div>
+					<blockquote class="testimonial-text">The 51/49 workarounds and Free Zones Law encoding are precise. As a diaspora investor, I received a package that showed exactly how to structure my equity and tax position—no guesswork, no back-and-forth with consultants. Moved from inquiry to LOI in 6 weeks instead of 4 months.</blockquote>
+					<div class="testimonial-author">
+						<div class="testimonial-avatar">KS</div>
+						<div class="testimonial-info">
+							<h4>Karim Saidani</h4>
+							<p>Industrial Investor, Diaspora Network, Maghreb Capital Partners</p>
+						</div>
+					</div>
+				</div>
+				<div class="testimonial-card">
+					<div class="testimonial-quote">"</div>
+					<blockquote class="testimonial-text">Our investment committee saw the CAS breakdown and said 'this is the first tool that actually tells us why a sector works in Algeria, not just that it does.' We now use Localize-DZ as our due-diligence backbone—42% faster deal flow, 18% better risk mitigation.</blockquote>
+					<div class="testimonial-author">
+						<div class="testimonial-avatar">FM</div>
+						<div class="testimonial-info">
+							<h4>Fatima Medjahed</h4>
+							<p>Portfolio Manager, IFC Emerging Markets Fund</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- SECTION 10: RESOURCES -->
+		<section class="page-section" id="resources">
+			<div class="container">
+				<h2 class="page-title">Resources & Documentation</h2>
+				<p class="page-intro">Access whitepapers, case studies, API documentation, and regulatory guides to understand Localize-DZ methodology and integrate with your workflow.</p>
+				<div class="resources-list">
+					<div class="resource-item">
+						<h3>CAS Methodology Whitepaper</h3>
+						<p>Deep dive into six-dimension Comparative Advantage Score: data sources, weighting, and validation benchmarks. Includes case studies on phosphate, automotive parts, and agro-processing sectors.</p>
+						<a href="#" download>Download PDF</a>
+					</div>
+					<div class="resource-item">
+						<h3>Compliance Rules Codex</h3>
+						<p>Machine-readable JSON schema for Algerian investment rules: 51/49 equity workarounds, AAPI regimes, Free Zones Law, Mining Law amendments. Version-controlled; quarterly updates published as deltas.</p>
+						<a href="#" download>Download Schema</a>
+					</div>
+					<div class="resource-item">
+						<h3>API Documentation</h3>
+						<p>RESTful endpoints for opportunity-package generation, CAS queries, compliance lookups, and quarterly delta feeds. Authentication via API key; sandbox environment available for pilot integration.</p>
+						<a href="#">View Docs</a>
+					</div>
+					<div class="resource-item">
+						<h3>Case Study: DBA Phosphate Portfolio</h3>
+						<p>How Development Bank of Algeria reduced appraisal cycle from 8 weeks to 10 days using Localize-DZ. 3 projects moved to funding committee; source-citation audit trail saved 200 hours of legal review.</p>
+						<a href="#" download>Download Case Study</a>
+					</div>
+					<div class="resource-item">
+						<h3>Regulatory Reference: 2025 Updates</h3>
+						<p>Summary of Mining Law amendments, Free Zones Law clarifications, and AAPI regime changes effective in 2025. Includes DFI appraisal implications and risk flags for existing portfolios.</p>
+						<a href="#" download>Download Guide</a>
+					</div>
+					<div class="resource-item">
+						<h3>Q3 2025 Data Release Notes</h3>
+						<p>Quarterly delta publication: DGD resource data updated, ONS employment figures refreshed, Bank of Algeria energy tariffs revised. Data quality metrics and known gaps disclosed transparently.</p>
+						<a href="#" download>Download Notes</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- SECTION 11: CONTACT & WAITLIST -->
+		<section class="page-section" id="contact">
+			<div class="container">
+				<h2 class="page-title">Get Started</h2>
+				<p class="page-intro">Request a pilot, ask questions, or join our early-adopter program. No credit card required. Institutional access granted within 48 hours.</p>
+				<form class="contact-form" id="contact-form">
+					<div class="form-group">
+						<label for="name">Full Name</label>
+						<input type="text" id="name" name="name" required>
+					</div>
+					<div class="form-group">
+						<label for="email">Email Address</label>
+						<input type="email" id="email" name="email" required>
+					</div>
+					<div class="form-group">
+						<label for="org">Organization</label>
+						<input type="text" id="org" name="org" required>
+					</div>
+					<div class="form-group">
+						<label for="role">Job Title</label>
+						<input type="text" id="role" name="role" required>
+					</div>
+					<div class="form-group">
+						<label for="inquiry">Investment thesis / inquiry</label>
+						<textarea id="inquiry" name="inquiry" required placeholder="Describe your target sector, geography, or asset class..."></textarea>
+					</div>
+					<button type="submit" class="btn btn-primary">Submit Inquiry</button>
+				</form>
+			</div>
+		</section>
+
+		<!-- SECTION 12: FINAL CTA -->
+		<section class="final-cta">
+			<div class="final-cta-content">
+				<h2>Start your 72-hour pilot today</h2>
+				<p>No credit card required. Institutional pilot access granted within 48 hours. Early adopters receive 6-month data refresh guarantee and API priority.</p>
+				<button class="btn btn-primary">Join waitlist</button>
+			</div>
+		</section>
+	</main>
+
+	<!-- ═══════════════════════════════════════════════════════════════════ -->
+	<!-- FOOTER -->
+	<!-- ═══════════════════════════════════════════════════════════════════ -->
+	<footer>
+		<div class="footer-container">
+			<div class="footer-content">
+				<div>
+					<div class="footer-brand">
+						<div class="footer-brand-mark"></div>
+						<span>Localize-DZ</span>
+					</div>
+					<p style="color: var(--color-muted); font-size: 0.9rem;">72-hour investment intelligence for Algeria. Machine-readable, source-cited, compliance-encoded.</p>
+				</div>
+				<div class="footer-column">
+					<h4>Product</h4>
+					<ul>
+						<li><a href="#landing">Home</a></li>
+						<li><a href="#how-it-works">How It Works</a></li>
+						<li><a href="#cas-framework">CAS Framework</a></li>
+						<li><a href="#compliance">Compliance Decoder</a></li>
+					</ul>
+				</div>
+				<div class="footer-column">
+					<h4>Resources</h4>
+					<ul>
+						<li><a href="#resources">Documentation</a></li>
+						<li><a href="#">API Reference</a></li>
+						<li><a href="#">Case Studies</a></li>
+						<li><a href="#">Regulatory Guide</a></li>
+					</ul>
+				</div>
+				<div class="footer-column">
+					<h4>Company</h4>
+					<ul>
+						<li><a href="#">About</a></li>
+						<li><a href="#contact">Contact</a></li>
+						<li><a href="#">Privacy</a></li>
+						<li><a href="#">Terms</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="footer-bottom">
+				<div class="footer-copyright">&copy; 2025 Localize-DZ. All rights reserved.</div>
+				<div class="footer-socials">
+					<a href="#" class="footer-social" aria-label="LinkedIn">
+						<svg viewBox="0 0 24 24" fill="currentColor">
+							<path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.469v6.766z"/>
+						</svg>
+					</a>
+					<a href="#" class="footer-social" aria-label="X (Twitter)">
+						<svg viewBox="0 0 24 24" fill="currentColor">
+							<path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2s9 5 20 5a9.5 9.5 0 00-9-5.5c4.75 2.25 9-1 9-5.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+						</svg>
+					</a>
+					<a href="#" class="footer-social" aria-label="GitHub">
+						<svg viewBox="0 0 24 24" fill="currentColor">
+							<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v 3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+						</svg>
+					</a>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<!-- ═══════════════════════════════════════════════════════════════════ -->
+	<!-- JAVASCRIPT -->
+	<!-- ═══════════════════════════════════════════════════════════════════ -->
+	<script>
+		// ──────────────────────────────────────────────────────────────────
+		// STICKY HEADER ON SCROLL
+		// ──────────────────────────────────────────────────────────────────
+		const header = document.getElementById('header');
+		window.addEventListener('scroll', () => {
+			if (window.scrollY > 20) {
+				header.classList.add('scrolled');
+			} else {
+				header.classList.remove('scrolled');
+			}
+		});
+
+		// ──────────────────────────────────────────────────────────────────
+		// MOBILE NAV TOGGLE
+		// ──────────────────────────────────────────────────────────────────
+		const hamburger = document.getElementById('hamburger-btn');
+		const navDrawer = document.getElementById('nav-drawer');
+		const body = document.body;
+
+		hamburger.addEventListener('click', () => {
+			body.classList.toggle('nav-open');
+			const isOpen = body.classList.contains('nav-open');
+			hamburger.setAttribute('aria-expanded', isOpen);
+		});
+
+		// Close drawer when a link is clicked
+		const navDrawerLinks = navDrawer.querySelectorAll('a');
+		navDrawerLinks.forEach(link => {
+			link.addEventListener('click', () => {
+				body.classList.remove('nav-open');
+				hamburger.setAttribute('aria-expanded', 'false');
+			});
+		});
+
+		// ──────────────────────────────────────────────────────────────────
+		// CONTACT FORM SUBMISSION
+		// ──────────────────────────────────────────────────────────────────
+		const contactForm = document.getElementById('contact-form');
+		if (contactForm) {
+			contactForm.addEventListener('submit', (e) => {
+				e.preventDefault();
+				alert('Thank you for your inquiry. Our team will contact you within 48 hours.');
+				contactForm.reset();
+			});
+		}
+
+		// ──────────────────────────────────────────────────────────────────
+		// BUTTON INTERACTIONS
+		// ──────────────────────────────────────────────────────────────────
+		const ctaButtons = document.querySelectorAll('.btn-primary, .nav-cta');
+		ctaButtons.forEach(btn => {
+			btn.addEventListener('click', (e) => {
+				if (btn.textContent.toLowerCase().includes('demo') || btn.textContent.toLowerCase().includes('waitlist')) {
+					e.preventDefault();
+					alert('Pilot access request received. We will respond within 48 hours.');
+				}
+			});
+		});
+	</script>
+</body>
+</html>
